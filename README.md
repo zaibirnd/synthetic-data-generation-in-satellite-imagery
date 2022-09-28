@@ -17,4 +17,6 @@
 
 ## 3D STL Image Animation
 
+<!-- ![3D Airplane Animation](./imgs/3d-img-animation.gif) -->
+
 ![3D Airplane Animation](./imgs/3d-img-animation.gif)
