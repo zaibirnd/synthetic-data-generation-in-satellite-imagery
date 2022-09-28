@@ -37,5 +37,21 @@
 ![2D Image to Tansparent Objects Generation](./imgs/img2tobj.png)
 <br />
 
-## Select base image from satellite imagery
-![]
+## Base as a background image from satellite imagery
+![](./imgs/satellite_img1.jpg)
+
+## Overlay Images Overview
+![](./imgs/overlay%20(1).png)
+![](./imgs/overlay%20(2).png)
+![](./imgs/overlay%20(3).png)
+![](./imgs/overlay%20(4).png)
+![](./imgs/overlay%20(5).png)
+![](./imgs/overlay%20(6).png)
+![](./imgs/overlay%20(7).png)
+![](./imgs/overlay%20(8).png)
+
+## Adding overlay images to background satellite imagery
+![](./imgs/s_img%20(1).png)
+![](./imgs/s_img%20(2).png)
+![](./imgs/s_img%20(3).png)
+![](./imgs/s_img%20(4).png)
