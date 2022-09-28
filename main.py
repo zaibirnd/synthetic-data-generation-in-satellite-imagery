@@ -1,6 +1,6 @@
 # Master Script
 from stl_png_loop import rotation
-from tran_png import overlayimg
+from tran_png import transparent_overlayimg
 from overlay_img import overlayimg_make
 
 
@@ -10,7 +10,7 @@ deg = 45
 rotation(filename,deg)
 
 # Genreating Transperent Overlay Images
-overlayimg()
+transparent_overlayimg()
 
 # Paste Transperent Overlay on Satilite Imagery
 overlayimg_make()
