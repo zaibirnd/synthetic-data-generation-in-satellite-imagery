@@ -64,44 +64,61 @@ def without_click(param,overlayimg_list):
     for k in tqdm(overlayimg_list):
 
         base_name = os.path.basename(k)
-        filename = overlayimg_folderName+'/'+base_name
-        fornt_img = Image.open(filename, 'r')
-        # img = cv2.imread('My project_1.png',
-        #                  cv2.IMREAD_UNCHANGED)
+        fornt_img = Image.open(overlayimg_folderName+'/'+base_name, 'r')
+
         bg = Image.open(param, 'r')
-        air_plane_pints = 0
+        
+        airplane_points = 0
         
         for i in range(1, 5):
 
-            # air_plane_pints += 80
+            # airplane_points += 80
             obj_img = Image.new('RGBA', (416, 416), (0, 0, 0, 0))
             back = obj_img.paste(bg, (0, 0))
-            front = obj_img.paste(fornt_img, (air_plane_pints, air_plane_pints), mask=fornt_img)
+            front = obj_img.paste(fornt_img, (airplane_points, airplane_points), mask=fornt_img)
 
             obj_img_cv = np.array(obj_img)
 
             offset = 5
-            # cv2.rectangle(obj_img_cv, (air_plane_pints, air_plane_pints), (air_plane_pints+50, air_plane_pints+50), (0, 255, 0), 2)
-            # cv2.rectangle(obj_img_cv, (air_plane_pints+offset, air_plane_pints+offset), (air_plane_pints+50-offset, air_plane_pints+50-offset), (0, 255, 0), 2)
+            # Getting size of the image
+            bg_img_h, bg_img_w, _ = obj_img_cv.shape
+            # print(bg_img_h, bg_img_w)
+            f_img_h, f_img_w = fornt_img.size
+            # print(f_img_h, f_img_w)
+
+            # cv2.rectangle(obj_img_cv, (airplane_points, airplane_points), (airplane_points+50, airplane_points+50), (0, 255, 0), 2)
+            
+            cv2.rectangle(obj_img_cv, (airplane_points+offset, airplane_points+offset), 
+                        (airplane_points+f_img_h-offset, airplane_points+f_img_w-offset), 
+                        (0, 255, 0), 2)
+            
             obj_img_cv_bgr = cv2.cvtColor(obj_img_cv, cv2.COLOR_RGB2BGR)
 
             
             cv2.imwrite(output_folderName+'/syn_'+base_name, obj_img_cv_bgr)
 
-            bb = pascal_voc_to_yolo(air_plane_pints,air_plane_pints,air_plane_pints,air_plane_pints,50,50)
-
+            
+            bb = pascal_voc_to_yolo(airplane_points+offset, airplane_points+offset,
+                                    airplane_points+f_img_h-offset, airplane_points+f_img_w-offset,
+                                    bg_img_h, bg_img_w)
+            # print(bb)
             ###################################
             # Creating bounding box as txt file
             ###################################
 
             txt_file = open(output_folderName+'/syn_'+base_name[:-4]+'.txt', 'w')
-            # txt_file.write('0 ' + str(air_plane_pints+offset) + ' ' + str(air_plane_pints+offset) + ' ' + str(air_plane_pints+50-offset) + ' ' + str(air_plane_pints+50-offset))
+            # txt_file.write('0 ' + str(airplane_points+offset) + ' ' + str(airplane_points+offset) + ' ' + str(airplane_points+50-offset) + ' ' + str(airplane_points+50-offset))
             # txt_file.write(str(obj_id)+' '+str(bb[0])+' '+str(bb[1])+' '+str(bb[2])+' '+str(bb[3])+'\n')
             txt_file.write('0 '+str(bb[0])+' '+str(bb[1])+' '+str(bb[2])+' '+str(bb[3])+'\n')
             txt_file.close()
 
 
-            air_plane_pints += 80
+            txt_file_classes = open(output_folderName+'/classes.txt', 'w')
+            txt_file_classes.write('airplane')
+            txt_file_classes.close()
+
+
+            airplane_points += 80
 
 
 def show_loading():
@@ -115,10 +132,6 @@ def show_loading():
 
 
 def overlayimg_make():
-
-    # img = cv2.imread(infile)
-    # height, width, _ = img.shape
-    # cv2.namedWindow('window', cv2.WINDOW_FREERATIO)
     
     # Remove all files in dir
     dir = output_folderName
