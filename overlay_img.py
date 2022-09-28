@@ -68,57 +68,57 @@ def without_click(param,overlayimg_list):
 
         bg = Image.open(param, 'r')
         
-        airplane_points = 0
+        airplane_points = 240
         
-        for i in range(1, 5):
+        # for i in range(1, 5):
 
-            # airplane_points += 80
-            obj_img = Image.new('RGBA', (416, 416), (0, 0, 0, 0))
-            back = obj_img.paste(bg, (0, 0))
-            front = obj_img.paste(fornt_img, (airplane_points, airplane_points), mask=fornt_img)
+        # airplane_points += 80
+        obj_img = Image.new('RGBA', (416, 416), (0, 0, 0, 0))
+        back = obj_img.paste(bg, (0, 0))
+        front = obj_img.paste(fornt_img, (airplane_points, airplane_points), mask=fornt_img)
 
-            obj_img_cv = np.array(obj_img)
+        obj_img_cv = np.array(obj_img)
 
-            offset = 5
-            # Getting size of the image
-            bg_img_h, bg_img_w, _ = obj_img_cv.shape
-            # print(bg_img_h, bg_img_w)
-            f_img_h, f_img_w = fornt_img.size
-            # print(f_img_h, f_img_w)
+        offset = 5
+        # Getting size of the image
+        bg_img_h, bg_img_w, _ = obj_img_cv.shape
+        # print(bg_img_h, bg_img_w)
+        f_img_h, f_img_w = fornt_img.size
+        # print(f_img_h, f_img_w)
 
-            # cv2.rectangle(obj_img_cv, (airplane_points, airplane_points), (airplane_points+50, airplane_points+50), (0, 255, 0), 2)
-            
-            cv2.rectangle(obj_img_cv, (airplane_points+offset, airplane_points+offset), 
-                        (airplane_points+f_img_h-offset, airplane_points+f_img_w-offset), 
-                        (0, 255, 0), 2)
-            
-            obj_img_cv_bgr = cv2.cvtColor(obj_img_cv, cv2.COLOR_RGB2BGR)
+        # cv2.rectangle(obj_img_cv, (airplane_points, airplane_points), (airplane_points+50, airplane_points+50), (0, 255, 0), 2)
+        
+        cv2.rectangle(obj_img_cv, (airplane_points+offset, airplane_points+offset), 
+                    (airplane_points+f_img_h-offset, airplane_points+f_img_w-offset), 
+                    (0, 255, 0), 2)
+        
+        obj_img_cv_bgr = cv2.cvtColor(obj_img_cv, cv2.COLOR_RGB2BGR)
 
-            
-            cv2.imwrite(output_folderName+'/syn_'+base_name, obj_img_cv_bgr)
+        
+        cv2.imwrite(output_folderName+'/syn_'+base_name, obj_img_cv_bgr)
 
-            
-            bb = pascal_voc_to_yolo(airplane_points+offset, airplane_points+offset,
-                                    airplane_points+f_img_h-offset, airplane_points+f_img_w-offset,
-                                    bg_img_h, bg_img_w)
-            # print(bb)
-            ###################################
-            # Creating bounding box as txt file
-            ###################################
+        
+        bb = pascal_voc_to_yolo(airplane_points+offset, airplane_points+offset,
+                                airplane_points+f_img_h-offset, airplane_points+f_img_w-offset,
+                                bg_img_h, bg_img_w)
+        # print(bb)
+        ###################################
+        # Creating bounding box as txt file
+        ###################################
 
-            txt_file = open(output_folderName+'/syn_'+base_name[:-4]+'.txt', 'w')
-            # txt_file.write('0 ' + str(airplane_points+offset) + ' ' + str(airplane_points+offset) + ' ' + str(airplane_points+50-offset) + ' ' + str(airplane_points+50-offset))
-            # txt_file.write(str(obj_id)+' '+str(bb[0])+' '+str(bb[1])+' '+str(bb[2])+' '+str(bb[3])+'\n')
-            txt_file.write('0 '+str(bb[0])+' '+str(bb[1])+' '+str(bb[2])+' '+str(bb[3])+'\n')
-            txt_file.close()
-
-
-            txt_file_classes = open(output_folderName+'/classes.txt', 'w')
-            txt_file_classes.write('airplane')
-            txt_file_classes.close()
+        txt_file = open(output_folderName+'/syn_'+base_name[:-4]+'.txt', 'w')
+        # txt_file.write('0 ' + str(airplane_points+offset) + ' ' + str(airplane_points+offset) + ' ' + str(airplane_points+50-offset) + ' ' + str(airplane_points+50-offset))
+        # txt_file.write(str(obj_id)+' '+str(bb[0])+' '+str(bb[1])+' '+str(bb[2])+' '+str(bb[3])+'\n')
+        txt_file.write('0 '+str(bb[0])+' '+str(bb[1])+' '+str(bb[2])+' '+str(bb[3])+'\n')
+        txt_file.close()
 
 
-            airplane_points += 80
+        txt_file_classes = open(output_folderName+'/classes.txt', 'w')
+        txt_file_classes.write('airplane')
+        txt_file_classes.close()
+
+
+        # airplane_points += 80
 
 
 def show_loading():
