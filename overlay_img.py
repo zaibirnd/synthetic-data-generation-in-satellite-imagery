@@ -82,6 +82,12 @@ def show_loading():
                 (255, 255, 255,), 1, cv2.LINE_AA, False)
     # cv2.imshow('Loading', img_progress)
 
+# Generate bounding box of the images
+def boundingbox_gen():
+    
+    return 0
+    
+
 def overlayimg_make():
 
     # img = cv2.imread(infile)
@@ -99,5 +105,5 @@ def overlayimg_make():
     without_click(infile,overlay_imgs)
     
     
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    overlayimg_make()
