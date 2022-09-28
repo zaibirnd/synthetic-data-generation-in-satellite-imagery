@@ -3,7 +3,7 @@ import numpy as np
 import glob
 import os
 
-def overlayimg():
+def transparent_overlayimg():
 
     rotation_folderName = 'rotation'
     output_folderName = 'overlayImg'
