@@ -36,3 +36,6 @@
 ### 2D Image to Tansparent Objects Generation
 ![2D Image to Tansparent Objects Generation](./imgs/img2tobj.png)
 <br />
+
+## Select base image from satellite imagery
+![]
