@@ -21,7 +21,7 @@
 
 ![3D Airplane Animation](./imgs/3d-img-animation.gif)
 
-## Overlayt Images - Synthetic Data Generation
+## Overlay Images - Synthetic Data Generation
 
 ### Convert 3D objects to 2D images with rotation and tilt
 ![](./imgs/3dto2d%20(1).png)
