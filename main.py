@@ -5,7 +5,9 @@ from overlay_img import overlayimg_make
 
 
 # Running Loop Script
-rotation()
+filename = 'airplane.stl'
+deg = 45
+rotation(filename,deg)
 
 # Genreating Transperent Overlay Images
 overlayimg()

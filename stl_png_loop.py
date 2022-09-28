@@ -3,11 +3,11 @@ from stl.mesh import Mesh
 import os
 import math
 
-def rotation():
+def rotation(filename,deg):
 
-    filename = 'airplane.stl'
+    # filename = 'airplane.stl'
     rotation_folderName = 'rotation'
-    deg = 45
+    # deg = 45
 
     # Remove all files in dir
     dir = rotation_folderName
