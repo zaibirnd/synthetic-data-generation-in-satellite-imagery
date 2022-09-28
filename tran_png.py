@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import glob
 import os
+from tqdm import tqdm
 
 def transparent_overlayimg():
 
@@ -15,7 +16,8 @@ def transparent_overlayimg():
 
     imgs = glob.glob(rotation_folderName+'/*.png')
 
-    for i in imgs:
+    print('[INFO]:: Generating Transparent Objects from 2D Images')
+    for i in tqdm(imgs):
         base_name = os.path.basename(i)
         fname = i
         img = cv2.imread(fname)

@@ -3,6 +3,8 @@ import os
 import cv2
 import numpy as np
 import glob
+from tqdm import tqdm
+
 
 # Useful Constants and Variables
 bacground_img = "base_imgs/satellite_img1.jpg"
@@ -51,7 +53,8 @@ def without_click(param,overlayimg_list):
 
     global cropping_list
     # if event == cv2.EVENT_LBUTTONDOWN:
-    for k in overlayimg_list:
+    print('[INFO]:: Generating Synthetic Satellite Imagery Dataset')
+    for k in tqdm(overlayimg_list):
 
         base_name = os.path.basename(k)
         filename = overlayimg_folderName+'/'+base_name
@@ -68,7 +71,7 @@ def without_click(param,overlayimg_list):
             obj_img.save(output_folderName+"/syn_"+base_name, format="png")
             air_plane_pints += 80
             # output = overlay_image_alpha(back, front, x, y)
-        print(base_name)
+        # print(base_name)
 
 def show_loading():
 
