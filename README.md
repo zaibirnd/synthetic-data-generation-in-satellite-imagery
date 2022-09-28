@@ -30,7 +30,7 @@
 ![](./imgs/3dto2d%20(4).png)
 ![](./imgs/3dto2d%20(5).png)
 ![](./imgs/3dto2d%20(6).png)
-![](./imgs/3dto2d%20(7).png)
+<!-- ![](./imgs/3dto2d%20(7).png) -->
 
 
 ### 2D Image to Tansparent Objects Generation
