@@ -63,15 +63,27 @@ def without_click(param,overlayimg_list):
         #                  cv2.IMREAD_UNCHANGED)
         bg = Image.open(param, 'r')
         air_plane_pints = 0
+        
         for i in range(1, 5):
+
+            # air_plane_pints += 80
             obj_img = Image.new('RGBA', (416, 416), (0, 0, 0, 0))
             back = obj_img.paste(bg, (0, 0))
             front = obj_img.paste(fornt_img, (air_plane_pints, air_plane_pints), mask=fornt_img)
-            
-            obj_img.save(output_folderName+"/syn_"+base_name, format="png")
+
+            obj_img_cv = np.array(obj_img)
+
+            offset = 5
+            # cv2.rectangle(obj_img_cv, (air_plane_pints, air_plane_pints), (air_plane_pints+50, air_plane_pints+50), (0, 255, 0), 2)
+            cv2.rectangle(obj_img_cv, (air_plane_pints+offset, air_plane_pints+offset), (air_plane_pints+50-offset, air_plane_pints+50-offset), (0, 255, 0), 2)
+            obj_img_cv_bgr = cv2.cvtColor(obj_img_cv, cv2.COLOR_RGB2BGR)
+
+            # cv2.imshow('window', obj_img_cv_bgr)
+            cv2.imwrite(output_folderName+'/syn_'+base_name, obj_img_cv_bgr)
+            # cv2.waitKey(0)
+
             air_plane_pints += 80
-            # output = overlay_image_alpha(back, front, x, y)
-        # print(base_name)
+
 
 def show_loading():
 
