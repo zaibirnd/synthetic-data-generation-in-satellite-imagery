@@ -48,6 +48,13 @@ def overlay_image_alpha(img, img_overlay, x, y, alpha_mask=None):
 
     return img_crop[:]
 
+########################################################################################
+ 
+def pascal_voc_to_yolo(x1, y1, x2, y2, image_w, image_h):
+    return [((x2 + x1)/(2*image_w)), ((y2 + y1)/(2*image_h)), (x2 - x1)/image_w, (y2 - y1)/image_h]
+ 
+#######################################################################################  
+
 
 def without_click(param,overlayimg_list):
 
@@ -78,9 +85,18 @@ def without_click(param,overlayimg_list):
             cv2.rectangle(obj_img_cv, (air_plane_pints+offset, air_plane_pints+offset), (air_plane_pints+50-offset, air_plane_pints+50-offset), (0, 255, 0), 2)
             obj_img_cv_bgr = cv2.cvtColor(obj_img_cv, cv2.COLOR_RGB2BGR)
 
-            # cv2.imshow('window', obj_img_cv_bgr)
+            
             cv2.imwrite(output_folderName+'/syn_'+base_name, obj_img_cv_bgr)
-            # cv2.waitKey(0)
+
+            bb = pascal_voc_to_yolo(air_plane_pints,air_plane_pints,air_plane_pints,air_plane_pints,50,50)
+
+            # create bounding box
+            txt_file = open(output_folderName+'/syn_'+base_name[:-4]+'.txt', 'w')
+            # txt_file.write('0 ' + str(air_plane_pints+offset) + ' ' + str(air_plane_pints+offset) + ' ' + str(air_plane_pints+50-offset) + ' ' + str(air_plane_pints+50-offset))
+            # txt_file.write(str(obj_id)+' '+str(bb[0])+' '+str(bb[1])+' '+str(bb[2])+' '+str(bb[3])+'\n')
+            txt_file.write('0 '+str(bb[0])+' '+str(bb[1])+' '+str(bb[2])+' '+str(bb[3])+'\n')
+            txt_file.close()
+
 
             air_plane_pints += 80
 
