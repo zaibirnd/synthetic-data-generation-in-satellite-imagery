@@ -20,7 +20,7 @@ def rotation(filename,deg):
     mesh.rotate([-0.1, 0.0, 0.1], math.radians(0))
 
     print('[INFO]:: Generating 2D Images from 3D Model')
-    for i in tqdm(range(0,361,deg)):
+    for i in tqdm(range(0,360,deg)):
         
         vpl.mesh_plot(mesh)
         vpl.view(camera_direction = [1, 0, -1])

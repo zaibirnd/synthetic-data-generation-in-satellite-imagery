@@ -2,7 +2,6 @@
 from stl_png_loop import rotation
 from tran_png import transparent_overlayimg
 from overlay_img import overlayimg_make
-from tqdm import tqdm
 
 
 # Running Loop Script
