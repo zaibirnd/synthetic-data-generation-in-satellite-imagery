@@ -21,6 +21,9 @@
 
 ![3D Airplane Animation](./imgs/3d-img-animation.gif)
 
+## WorkFlow Diagram
+![workflow1](./imgs/WorkFlow1.png)
+
 ## Overlay Images - Synthetic Data Generation
 
 ### Convert 3D objects to 2D images with rotation and tilt
@@ -56,7 +59,6 @@
 ![](./imgs/s_img%20(3).png)
 ![](./imgs/s_img%20(4).png)
 
-## WorkFlow Diagram of this Pipeline
-![workflow1](./imgs/WorkFlow1.png)
+
 
 
