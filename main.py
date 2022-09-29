@@ -3,8 +3,9 @@ from stl_png_loop import rotation
 from stl_png_loop_tilt import rotation_tilt
 from tran_png import transparent_overlayimg
 from overlay_img import overlayimg_make
+import time
 
-
+st = time.time()
 # Running Loop Script
 filename = 'airplane.stl'
 deg = 45
@@ -18,6 +19,13 @@ transparent_overlayimg()
 overlayimg_make()
 
 # Bounding Box Generation
+
+
+# get the end time
+et = time.time()
+# get the execution time
+elapsed_time = et - st
+print('\nExecution time:', round(elapsed_time,2), 'seconds')
 
 
 

@@ -59,6 +59,9 @@
 ![](./imgs/s_img%20(3).png)
 ![](./imgs/s_img%20(4).png)
 
+## Execution time on local machine
+![](./imgs/execution1.png)
+
 
 
 
