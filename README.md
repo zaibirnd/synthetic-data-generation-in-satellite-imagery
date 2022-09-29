@@ -55,3 +55,8 @@
 ![](./imgs/s_img%20(2).png)
 ![](./imgs/s_img%20(3).png)
 ![](./imgs/s_img%20(4).png)
+
+## WorkFlow Diagram of this Pipeline
+![workflow1](./imgs/WorkFlow1.png)
+
+
