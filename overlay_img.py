@@ -73,7 +73,6 @@ def auto_labels_generation(coordinates_list,offset,bg_img_h,bg_img_w,f_img_h,f_i
     txt_file_classes.write('airplane')
     txt_file_classes.close()
 
-
 def dataset_labels_gen(param,overlayimg_list,coordinates_list,offset=5):
 
     print('[INFO]:: Generating Synthetic Satellite Imagery Dataset')
@@ -123,7 +122,6 @@ def dataset_labels_gen(param,overlayimg_list,coordinates_list,offset=5):
         txt_file_classes = open(output_folderName+'/classes.txt', 'w')
         txt_file_classes.write('airplane')
         txt_file_classes.close()
-
 
 def overlayimg_make(offset=5):
 
