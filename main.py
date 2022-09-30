@@ -1,6 +1,5 @@
-# Master Script
-from matplotlib.transforms import offset_copy
-from stl_png_loop import rotation
+# Master Script for the project
+# from stl_png_loop import rotation
 from stl_png_loop_tilt import rotation_tilt
 from tran_png import transparent_overlayimg
 from overlay_img import overlayimg_make
