@@ -5,16 +5,13 @@ import numpy as np
 import glob
 from tqdm import tqdm
 
-
 # Useful Constants and Variables
 background_img = "base_imgs/satellite_img1.jpg"
 overlayimg_folderName = 'overlayImg'
 output_folderName = 'satelliteImg_dataset'
 
-cropping_list = []
 coordinates_list = []
 DATASET_DIR = './'
-IMG_EXTENSION = '.jpg'
 base_img = cv2.imread(background_img, 1)
 
 infile = os.path.join(DATASET_DIR, background_img)
@@ -52,54 +49,20 @@ def overlay_image_alpha(img, img_overlay, x, y, alpha_mask=None):
 def pascal_voc_to_yolo(x1, y1, x2, y2, image_w, image_h):
     return [((x2 + x1)/(2*image_w)), ((y2 + y1)/(2*image_h)), (x2 - x1)/image_w, (y2 - y1)/image_h]
 
-def click_func(event, x, y, flags, param):
-    """
-    Click function that fire-up against the user click event
-    :param event:
-    :param x:
-    :param y:
-    :param flags:
-    :param param:
-    :return:
-    """
-    global cropping_list
-    if event == cv2.EVENT_LBUTTONDOWN:
-        x1 = x - CHOP_SIZE // 2
-        x2 = x + CHOP_SIZE // 2
-        y1 = y - CHOP_SIZE // 2
-        y2 = y + CHOP_SIZE // 2
-
-        cv2.rectangle(param, (x1, y1), (x2, y2), (0, 255, 0), thickness=3)
-        cv2.imshow(IMG_NAME, param)
-        cropping_list.append([x1, y1, x2, y2])
-
 def coordinates_on_click(event, x, y, flags, params):
     global coordinates_list
-
     if event == cv2.EVENT_LBUTTONDOWN:
-        print(x, ' ', y)
-        # displaying the coordinates on the image window
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        cv2.putText(img, str('.'), (x,y), font, 1, (0, 255, 0), 8)
-        cv2.imshow('image', params)
-        coordinates_list.append([x,y])
-
-def with_click(event, x, y, flags, params):
-    global coordinates_list
-    if event == cv2.EVENT_LBUTTONDOWN:
-    
-        print(x, ' ', y)
-        # displaying the coordinates on the image window
+        # print(x, ' ', y)
         font = cv2.FONT_HERSHEY_SIMPLEX
         cv2.putText(base_img, str('.'), (x,y), font, 1, (0, 255, 0), 8)
         cv2.imshow('image', base_img)
         coordinates_list.append([x,y]) 
 
+# def auto_labels_generation():
+
 
 def dataset_labels_gen(param,overlayimg_list,coordinates_list):
 
-    global cropping_list
-    # if event == cv2.EVENT_LBUTTONDOWN:
     print('[INFO]:: Generating Synthetic Satellite Imagery Dataset')
     for k in tqdm(overlayimg_list):
 
@@ -133,7 +96,6 @@ def dataset_labels_gen(param,overlayimg_list,coordinates_list):
 
 
         # Creating bounding box as txt file
-        
         for obj_pt in coordinates_list:
             bb = pascal_voc_to_yolo(obj_pt[0]+offset, obj_pt[1]+offset,
                                     obj_pt[0]+f_img_h-offset, obj_pt[1]+f_img_w-offset,
@@ -156,17 +118,13 @@ def overlayimg_make():
         os.remove(os.path.join(dir,f))
 
     overlay_imgs_list = glob.glob(overlayimg_folderName+'/*.png')
-    # print(overlay_imgs_list)
-
     cv2.imshow('image', base_img)
-    cv2.setMouseCallback('image', with_click)
+    cv2.setMouseCallback('image', coordinates_on_click)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     print(coordinates_list)
 
     dataset_labels_gen(infile,overlay_imgs_list,coordinates_list)
-
-    # dataset_labels_gen(infile,overlay_imgs_list,coordinates_list)
         
 if __name__ == '__main__':
     # click_coordinates()
