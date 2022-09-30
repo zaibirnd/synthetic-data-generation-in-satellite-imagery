@@ -5,16 +5,15 @@ import numpy as np
 import glob
 from tqdm import tqdm
 
+# Global variables
+coordinates_list = []
+background_img = ''
+
 # Useful Constants and Variables
 background_img = 'base_imgs/satellite_img1.jpg'
 overlayimg_folderName = 'overlayImg'
 output_folderName = 'satelliteImg_dataset'
-
-coordinates_list = []
-DATASET_DIR = './'
 base_img = cv2.imread(background_img, 1)
-
-# infile = os.path.join(DATASET_DIR, background_img)
 
 def overlay_image_alpha(img, img_overlay, x, y, alpha_mask=None):
 
@@ -127,8 +126,6 @@ def overlayimg_make():
     dataset_labels_gen(background_img,overlay_imgs_list,coordinates_list)
         
 if __name__ == '__main__':
-    # click_coordinates()
-    # base_img = cv2.imread(background_img, 1)
     overlayimg_make()
 
 
