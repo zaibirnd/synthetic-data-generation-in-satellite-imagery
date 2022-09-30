@@ -108,21 +108,21 @@ def dataset_labels_gen(param,overlayimg_list,coordinates_list,offset=5):
 
         cv2.imwrite(output_folderName+'/syn_'+base_name, obj_img_cv_bgr)
 
-        auto_labels_generation(coordinates_list,offset,bg_img_h,bg_img_w,f_img_h,f_img_w,base_name)
+        # auto_labels_generation(coordinates_list,offset,bg_img_h,bg_img_w,f_img_h,f_img_w,base_name)
 
-        # # Creating bounding box as txt file
-        # for obj_pt in coordinates_list:
-        #     bb = pascal_voc_to_yolo(obj_pt[0]+offset, obj_pt[1]+offset,
-        #                             obj_pt[0]+f_img_h-offset, obj_pt[1]+f_img_w-offset,
-        #                             bg_img_h, bg_img_w)
+        ### Creating bounding box as txt files ###
+        for obj_pt in coordinates_list:
+            bb = pascal_voc_to_yolo(obj_pt[0]+offset, obj_pt[1]+offset,
+                                    obj_pt[0]+f_img_h-offset, obj_pt[1]+f_img_w-offset,
+                                    bg_img_h, bg_img_w)
 
-        #     txt_file = open(output_folderName+'/syn_'+base_name[:-4]+'.txt', 'a')
-        #     txt_file.write('0 '+str(bb[0])+' '+str(bb[1])+' '+str(bb[2])+' '+str(bb[3])+'\n')
-        #     txt_file.close()
+            txt_file = open(output_folderName+'/syn_'+base_name[:-4]+'.txt', 'a')
+            txt_file.write('0 '+str(bb[0])+' '+str(bb[1])+' '+str(bb[2])+' '+str(bb[3])+'\n')
+            txt_file.close()
 
-        # txt_file_classes = open(output_folderName+'/classes.txt', 'w')
-        # txt_file_classes.write('airplane')
-        # txt_file_classes.close()
+        txt_file_classes = open(output_folderName+'/classes.txt', 'w')
+        txt_file_classes.write('airplane')
+        txt_file_classes.close()
 
 
 def overlayimg_make(offset=5):
