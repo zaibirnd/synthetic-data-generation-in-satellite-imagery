@@ -11,7 +11,6 @@ bacground_img = "base_imgs/satellite_img1.jpg"
 overlayimg_folderName = 'overlayImg'
 output_folderName = 'satelliteImg_dataset'
 
-
 cropping_list = []
 DATASET_DIR = './'
 IMG_EXTENSION = '.jpg'

@@ -1,0 +1,7 @@
+Add Manual coordinates for airplane (doing...)
+AirPlane (Object) Shadow
+Do it for multiple base images
+PySimpleGUI
+
+50-100
+Tone addition for all
