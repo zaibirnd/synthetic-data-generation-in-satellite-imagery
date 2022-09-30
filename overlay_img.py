@@ -6,7 +6,7 @@ import glob
 from tqdm import tqdm
 
 # Useful Constants and Variables
-background_img = "base_imgs/satellite_img1.jpg"
+background_img = 'base_imgs/satellite_img1.jpg'
 overlayimg_folderName = 'overlayImg'
 output_folderName = 'satelliteImg_dataset'
 
@@ -14,7 +14,7 @@ coordinates_list = []
 DATASET_DIR = './'
 base_img = cv2.imread(background_img, 1)
 
-infile = os.path.join(DATASET_DIR, background_img)
+# infile = os.path.join(DATASET_DIR, background_img)
 
 def overlay_image_alpha(img, img_overlay, x, y, alpha_mask=None):
 
@@ -111,7 +111,7 @@ def dataset_labels_gen(param,overlayimg_list,coordinates_list):
 
 
 def overlayimg_make():
-    
+
     # Remove all files in dir
     dir = output_folderName
     for f in os.listdir(dir):
@@ -124,7 +124,7 @@ def overlayimg_make():
     cv2.destroyAllWindows()
     print(coordinates_list)
 
-    dataset_labels_gen(infile,overlay_imgs_list,coordinates_list)
+    dataset_labels_gen(background_img,overlay_imgs_list,coordinates_list)
         
 if __name__ == '__main__':
     # click_coordinates()

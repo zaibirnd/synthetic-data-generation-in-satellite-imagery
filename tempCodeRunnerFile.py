@@ -1,1 +1,1 @@
-obj_pt
+infile
