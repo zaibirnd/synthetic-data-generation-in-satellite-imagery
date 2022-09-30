@@ -1,5 +1,18 @@
 # Synthetic Data Generation in Satellite Imagery (Pipeline)
 
+## Creating a Conda Environment
+```
+conda create -n synthetic_data_generation python=3.9
+```
+## Installation
+```
+pip install -r requirements.txt
+```
+## Usage
+```
+python main.py
+```
+
 ## Synthetic 3D Objects to Dataset Generation
 
 - Introduction
@@ -14,6 +27,7 @@
 - Smooth out the machine learning model
 - Reduce the overfitting of data
 - Help improve the performance and results
+
 
 ## 3D STL Image Animation
 
