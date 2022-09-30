@@ -1,4 +1,5 @@
 # Master Script
+from matplotlib.transforms import offset_copy
 from stl_png_loop import rotation
 from stl_png_loop_tilt import rotation_tilt
 from tran_png import transparent_overlayimg
@@ -16,12 +17,8 @@ rotation_tilt(filename,deg)
 transparent_overlayimg()
 
 # Paste Transperent Overlay on Satilite Imagery
-
-# background_img = 'base_imgs/satellite_img1.jpg'
-# overlayimg_folderName = 'overlayImg'
-# output_folderName = 'satelliteImg_dataset'
-# base_img = cv2.imread(background_img, 1)
-overlayimg_make()
+offset = 5
+overlayimg_make(offset)
 
 # Bounding Box Generation
 
