@@ -1,6 +1,7 @@
 from PIL import Image
 import os
 import cv2
+from matplotlib.pyplot import flag
 import numpy as np
 import glob
 from tqdm import tqdm
@@ -73,7 +74,7 @@ def auto_labels_generation(coordinates_list,offset,bg_img_h,bg_img_w,f_img_h,f_i
     txt_file_classes.write('airplane')
     txt_file_classes.close()
 
-def dataset_labels_gen(param,overlayimg_list,coordinates_list,offset=5):
+def dataset_labels_gen(param,overlayimg_list,coordinates_list,offset,flag_rect):
 
     print('[INFO]:: Generating Synthetic Satellite Imagery Dataset')
     for k in tqdm(overlayimg_list):
@@ -97,11 +98,12 @@ def dataset_labels_gen(param,overlayimg_list,coordinates_list,offset=5):
         # Getting size of the image
         bg_img_h, bg_img_w, _ = obj_img_cv.shape
         f_img_h, f_img_w = fornt_img.size
-        
-        for obj_pt in coordinates_list:
-            cv2.rectangle(obj_img_cv, (obj_pt[0]+offset, obj_pt[1]+offset), 
-                        (obj_pt[0]+f_img_h-offset, obj_pt[1]+f_img_w-offset), 
-                        (0, 255, 0), 2)
+
+        if (flag_rect == True):
+            for obj_pt in coordinates_list:
+                cv2.rectangle(obj_img_cv, (obj_pt[0]+offset, obj_pt[1]+offset), 
+                            (obj_pt[0]+f_img_h-offset, obj_pt[1]+f_img_w-offset), 
+                            (0, 255, 0), 2)
         
         obj_img_cv_bgr = cv2.cvtColor(obj_img_cv, cv2.COLOR_RGB2BGR)
 
@@ -123,7 +125,7 @@ def dataset_labels_gen(param,overlayimg_list,coordinates_list,offset=5):
         txt_file_classes.write('airplane')
         txt_file_classes.close()
 
-def overlayimg_make(offset=5):
+def overlayimg_make(offset=5,flag_rect=False):
 
     # Remove all files in dir
     dir = output_folderName
@@ -137,7 +139,7 @@ def overlayimg_make(offset=5):
     cv2.destroyAllWindows()
     print(coordinates_list)
 
-    dataset_labels_gen(background_img,overlay_imgs_list,coordinates_list,offset)
+    dataset_labels_gen(background_img,overlay_imgs_list,coordinates_list,offset,flag_rect)
 
     print('[INFO]:: Synthetic Satellite Imagery Dataset Generated')
         

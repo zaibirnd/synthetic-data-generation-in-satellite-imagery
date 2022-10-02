@@ -17,7 +17,8 @@ transparent_overlayimg()
 
 # Paste Transperent Overlay on Satilite Imagery
 offset = 5
-overlayimg_make(offset)
+flag_rect = True
+overlayimg_make(offset,flag_rect)
 
 # Bounding Box Generation
 
