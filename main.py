@@ -13,14 +13,14 @@ deg = 45
 rotation_tilt(filename,deg)
 
 # Genreating Transperent Overlay Images
-transparent_overlayimg()
+object_dim = [40,40]
+transparent_overlayimg(object_dim)
 
 # Paste Transperent Overlay on Satilite Imagery
 offset = 5
 flag_rect = True
 overlayimg_make(offset,flag_rect)
 
-# Bounding Box Generation
 
 
 # get the end time

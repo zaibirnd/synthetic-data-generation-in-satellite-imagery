@@ -49,12 +49,15 @@ def overlay_image_alpha(img, img_overlay, x, y, alpha_mask=None):
 def pascal_voc_to_yolo(x1, y1, x2, y2, image_w, image_h):
     return [((x2 + x1)/(2*image_w)), ((y2 + y1)/(2*image_h)), (x2 - x1)/image_w, (y2 - y1)/image_h]
 
-def coordinates_on_click(event, x, y, flags, params):
+def coordinates_on_click(event, x, y, flags, params, offset=5, object_dim=[40,40]):
     global coordinates_list
     if event == cv2.EVENT_LBUTTONDOWN:
         # print(x, ' ', y)
         font = cv2.FONT_HERSHEY_SIMPLEX
         cv2.putText(base_img, str('.'), (x,y), font, 1, (0, 255, 0), 8)
+        # cv2.rectangle(base_img, (x+offset, y+offset), 
+        #                     (x+object_dim[0]-offset, y+object_dim[1]-offset), 
+        #                     (0, 255, 0), -1)
         cv2.imshow('image', base_img)
         coordinates_list.append([x,y]) 
 
@@ -125,7 +128,7 @@ def dataset_labels_gen(param,overlayimg_list,coordinates_list,offset,flag_rect):
         txt_file_classes.write('airplane')
         txt_file_classes.close()
 
-def overlayimg_make(offset=5,flag_rect=False):
+def overlayimg_make(offset=5,flag_rect=True):
 
     # Remove all files in dir
     dir = output_folderName
@@ -144,7 +147,7 @@ def overlayimg_make(offset=5,flag_rect=False):
     print('[INFO]:: Synthetic Satellite Imagery Dataset Generated')
         
 if __name__ == '__main__':
-    overlayimg_make(offset=5)
+    overlayimg_make()
 
 
 

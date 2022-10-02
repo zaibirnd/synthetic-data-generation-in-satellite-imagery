@@ -4,7 +4,7 @@ import glob
 import os
 from tqdm import tqdm
 
-def transparent_overlayimg():
+def transparent_overlayimg(dim=[50,50]):
 
     rotation_folderName = 'rotation'
     output_folderName = 'overlayImg'
@@ -39,7 +39,7 @@ def transparent_overlayimg():
         # mask = cv2.erode(mask, np.ones((1, 1), np.int32), iterations=1)
 
         output = np.dstack((img, mask))
-        output = cv2.resize(output,(50,50))
+        output = cv2.resize(output,(dim[0],dim[1]))
 
         cv2.imwrite(output_folderName+'/'+base_name[:-4]+'_t'+".png", output)
 
