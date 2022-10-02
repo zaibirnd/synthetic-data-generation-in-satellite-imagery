@@ -8,7 +8,7 @@ import time
 st = time.time()
 # Running Loop Script
 filename = 'airplane.stl'
-deg = 45
+deg = 90
 # rotation(filename,deg)
 rotation_tilt(filename,deg)
 
@@ -18,7 +18,7 @@ transparent_overlayimg(object_dim)
 
 # Paste Transperent Overlay on Satilite Imagery
 offset = 5
-flag_rect = True
+flag_rect = False
 overlayimg_make(offset,flag_rect)
 
 

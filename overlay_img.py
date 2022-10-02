@@ -1,14 +1,14 @@
 from PIL import Image
 import os
 import cv2
-from matplotlib.pyplot import flag
+# from matplotlib.pyplot import flag
 import numpy as np
 import glob
 from tqdm import tqdm
 
 # Global variables
 coordinates_list = []
-background_img = ''
+# background_img = ''
 
 # Useful Constants and Variables
 background_img = 'base_imgs/satellite_img1.jpg'

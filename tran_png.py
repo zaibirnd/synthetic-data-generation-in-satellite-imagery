@@ -43,4 +43,3 @@ def transparent_overlayimg(dim=[50,50]):
 
         cv2.imwrite(output_folderName+'/'+base_name[:-4]+'_t'+".png", output)
 
-
