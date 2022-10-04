@@ -18,7 +18,7 @@ transparent_overlayimg(object_dim)
 
 # Paste Transperent Overlay on Satilite Imagery
 offset = 5
-flag_rect = False
+flag_rect = True
 overlayimg_make(offset,flag_rect)
 
 
